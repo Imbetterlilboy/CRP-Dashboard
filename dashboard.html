@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Chicago Dashboard</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        background: '#0a0a0a',
+                        foreground: '#fafafa',
+                        card: '#1a1a1a',
+                        'card-foreground': '#fafafa',
+                        primary: '#dc2626',
+                        'primary-foreground': '#fafafa',
+                        secondary: '#262626',
+                        'secondary-foreground': '#fafafa',
+                        muted: '#262626',
+                        'muted-foreground': '#a3a3a3',
+                        accent: '#dc2626',
+                        'accent-foreground': '#fafafa',
+                        border: '#262626',
+                        input: '#262626',
+                        ring: '#dc2626'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0a0a0a;
+            color: #fafafa;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(220, 38, 38, 0.1);
+        }
+        .logo-glow {
+            filter: drop-shadow(0 0 10px rgba(220, 38, 38, 0.3));
+        }
+        .stat-card {
+            background: linear-gradient(135deg, #1a1a1a 0%, #262626 100%);
+        }
+    </style>
+</head>
+<body class="gradient-bg min-h-screen">
+    <!-- Header -->
+    <header class="border-b border-border bg-card/50 backdrop-blur-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-4">
+                    <img src="logo.png" alt="Chicago Logo" class="w-10 h-10 logo-glow">
+                    <h1 class="text-xl font-bold">Chicago Dashboard</h1>
+                </div>
+                
+                <div class="flex items-center gap-4">
+                    <div class="flex items-center gap-2">
+                        <img id="userAvatar" src="/placeholder.svg" alt="User Avatar" class="w-8 h-8 rounded-full">
+                        <span id="username" class="text-sm font-medium"></span>
+                    </div>
+                    <button onclick="logout()" class="text-muted-foreground hover:text-foreground transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- Welcome Section -->
+        <div class="mb-8">
+            <h2 class="text-3xl font-bold mb-2">Welcome back!</h2>
+            <p class="text-muted-foreground">Here's what's happening in your Chicago dashboard today.</p>
+        </div>
+
+        <!-- Stats Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <div class="stat-card rounded-lg p-6 card-hover">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-muted-foreground text-sm">Total Users</p>
+                        <p class="text-2xl font-bold">2,847</p>
+                    </div>
+                    <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <span class="text-green-500 text-sm">+12.5%</span>
+                    <span class="text-muted-foreground text-sm ml-1">from last month</span>
+                </div>
+            </div>
+
+            <div class="stat-card rounded-lg p-6 card-hover">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-muted-foreground text-sm">Revenue</p>
+                        <p class="text-2xl font-bold">$45,231</p>
+                    </div>
+                    <div class="w-12 h-12 bg-green-500/10 rounded-lg flex items-center justify-center">
+                        <svg class="w-6 h-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <span class="text-green-500 text-sm">+20.1%</span>
+                    <span class="text-muted-foreground text-sm ml-1">from last month</span>
+                </div>
+            </div>
+
+            <div class="stat-card rounded-lg p-6 card-hover">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-muted-foreground text-sm">Orders</p>
+                        <p class="text-2xl font-bold">1,234</p>
+                    </div>
+                    <div class="w-12 h-12 bg-blue-500/10 rounded-lg flex items-center justify-center">
+                        <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <span class="text-red-500 text-sm">-3.2%</span>
+                    <span class="text-muted-foreground text-sm ml-1">from last month</span>
+                </div>
+            </div>
+
+            <div class="stat-card rounded-lg p-6 card-hover">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-muted-foreground text-sm">Active Now</p>
+                        <p class="text-2xl font-bold">573</p>
+                    </div>
+                    <div class="w-12 h-12 bg-yellow-500/10 rounded-lg flex items-center justify-center">
+                        <svg class="w-6 h-6 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <span class="text-green-500 text-sm">+5.4%</span>
+                    <span class="text-muted-foreground text-sm ml-1">from last hour</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Feature Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="bg-card border border-border rounded-lg p-6 card-hover">
+                <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                    <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                    </svg>
+                </div>
+                <h3 class="text-lg font-semibold mb-2">Analytics</h3>
+                <p class="text-muted-foreground mb-4">View detailed analytics and insights about your Chicago operations.</p>
+                <button class="text-primary hover:text-primary/80 font-medium">View Analytics →</button>
+            </div>
+
+            <div class="bg-card border border-border rounded-lg p-6 card-hover">
+                <div class="w-12 h-12 bg-green-500/10 rounded-lg flex items-center justify-center mb-4">
+                    <svg class="w-6 h-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                    </svg>
+                </div>
+                <h3 class="text-lg font-semibold mb-2">Team Management</h3>
+                <p class="text-muted-foreground mb-4">Manage your team members and their permissions across the platform.</p>
+                <button class="text-primary hover:text-primary/80 font-medium">Manage Team →</button>
+            </div>
+
+            <div class="bg-card border border-border rounded-lg p-6 card-hover">
+                <div class="w-12 h-12 bg-blue-500/10 rounded-lg flex items-center justify-center mb-4">
+                    <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                    </svg>
+                </div>
+                <h3 class="text-lg font-semibold mb-2">Settings</h3>
+                <p class="text-muted-foreground mb-4">Configure your dashboard settings and preferences.</p>
+                <button class="text-primary hover:text-primary/80 font-medium">Open Settings →</button>
+            </div>
+
+            <div class="bg-card border border-border rounded-lg p-6 card-hover">
+                <div class="w-12 h-12 bg-purple-500/10 rounded-lg flex items-center justify-center mb-4">
+                    <svg class="w-6 h-6 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                    </svg>
+                </div>
+                <h3 class="text-lg font-semibold mb-2">Support</h3>
+                <p class="text-muted-foreground mb-4">Get help and support for your Chicago dashboard experience.</p>
+                <button class="text-primary hover:text-primary/80 font-medium">Contact Support →</button>
+            </div>
+
+            <div class="bg-card border border-border rounded-lg p-6 card-hover">
+                <div class="w-12 h-12 bg-orange-500/10 rounded-lg flex items-center justify-center mb-4">
+                    <svg class="w-6 h-6 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                </div>
+                <h3 class="text-lg font-semibold mb-2">Tasks</h3>
+                <p class="text-muted-foreground mb-4">Manage and track your daily tasks and projects.</p>
+                <button class="text-primary hover:text-primary/80 font-medium">View Tasks →</button>
+            </div>
+
+            <div class="bg-card border border-border rounded-lg p-6 card-hover">
+                <div class="w-12 h-12 bg-pink-500/10 rounded-lg flex items-center justify-center mb-4">
+                    <svg class="w-6 h-6 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4V2a1 1 0 011-1h8a1 1 0 011 1v2m-9 0h10m-10 0a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V6a2 2 0 00-2-2M9 10h6m-6 4h6"/>
+                    </svg>
+                </div>
+                <h3 class="text-lg font-semibold mb-2">Reports</h3>
+                <p class="text-muted-foreground mb-4">Generate and view comprehensive reports for your business.</p>
+                <button class="text-primary hover:text-primary/80 font-medium">View Reports →</button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Check if user is logged in
+        function checkAuth() {
+            const isLoggedIn = localStorage.getItem('isLoggedIn');
+            if (!isLoggedIn) {
+                window.location.href = 'index.html';
+                return;
+            }
+            
+            // Load user data
+            const user = JSON.parse(localStorage.getItem('user') || '{}');
+            document.getElementById('username').textContent = user.username || 'User';
+            document.getElementById('userAvatar').src = user.avatar || 'https://cdn.discordapp.com/embed/avatars/0.png';
+        }
+        
+        function logout() {
+            localStorage.removeItem('isLoggedIn');
+            localStorage.removeItem('user');
+            window.location.href = 'index.html';
+        }
+        
+        // Initialize
+        checkAuth();
+    </script>
+</body>
+</html>
